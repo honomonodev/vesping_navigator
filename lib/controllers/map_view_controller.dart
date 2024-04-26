@@ -15,8 +15,17 @@ class MapViewController extends GetxController {
     navigationOption = MapBoxNavigation.instance.getDefaultOptions();
     navigationOption.initialLatitude = 37.7749;
     navigationOption.initialLongitude = -122.4194;
-    navigationOption.mode = MapBoxNavigationMode.walking;
+    navigationOption.mode = MapBoxNavigationMode.driving;
+    navigationOption.language = "en";
     MapBoxNavigation.instance.registerRouteEventListener(onRouteEvent);
+    navigationOption.bannerInstructionsEnabled = true;
+    navigationOption.voiceInstructionsEnabled = true;
+    navigationOption.allowsUTurnAtWayPoints = true;
+    navigationOption.simulateRoute = false;
+    navigationOption.mapStyleUrlNight =
+        "mapbox://styles/mapbox/navigation-guidance-night-v4";
+    navigationOption.mapStyleUrlDay =
+        "mapbox://styles/mapbox/navigation-guidance-day-v4";
   }
 
   @override
