@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/views/dashboard.dart';
-import 'package:get/get.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'ui/splash.dart';
+
+late SharedPreferences sharedPreferences;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  sharedPreferences = await SharedPreferences.getInstance();
+  await dotenv.load(fileName: "assets/config/.env");
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Dashboard(),
-    );
+    return MaterialApp(
+        title: 'Mapbox Flutter',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primarySwatch: Colors.indigo,
+            textTheme:
+                GoogleFonts.openSansTextTheme(Theme.of(context).textTheme)),
+        home: const Splash());
   }
 }
