@@ -6,7 +6,7 @@ allprojects {
 }
 
 buildscript {
-    ext.kotlin_version = '1.9.23'  // This is the line you're looking for
+    ext.kotlin_version = '1.7.1'  // This is the line you're looking for
     repositories {
         google()
         mavenCentral()
